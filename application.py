@@ -8,7 +8,8 @@ import pymongo
 logging.basicConfig(filename="scrapper.log" , level=logging.INFO)
 import os
 
-app = Flask(__name__)
+application = Flask(__name__)
+app= application
 
 @app.route("/", methods = ['GET'])
 def homepage():
@@ -58,10 +59,10 @@ def index():
                                 img_data.append(mydict)
                                 with open(os.path.join(save_directory, f"{query}_{image_tags.index(image_tag)}.jpg"), "wb") as f:
                                     f.write(image_data)
-                    #client = pymongo.MongoClient("mongodb+srv://snshrivas:Snshrivas@cluster0.ln0bt5m.mongodb.net/?retryWrites=true&w=majority")
-                    #db = client['image_scrap']
-                    #review_col = db['image_scrap_data']
-                    #review_col.insert_many(img_data)          
+                    client = pymongo.MongoClient("mongodb+srv://siddharthdaryani:sidd@SQL567@siddharth.ipwvs0o.mongodb.net/?retryWrites=true&w=majority")
+                    db = client['image_scrap']
+                    review_col = db['image_scrap_data']
+                    review_col.insert_many(img_data)          
 
                     return "image laoded"
                 except Exception as e:
